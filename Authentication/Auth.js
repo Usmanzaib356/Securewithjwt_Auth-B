@@ -4,6 +4,9 @@ const Router = express.Router()
 const jwt =  require('jsonwebtoken')
 require('dotenv').config()
 const secret_key = process.env.Secret
+
+
+
 // schema
  const userSchema = new mongoose.Schema({
     name:String,
@@ -46,7 +49,7 @@ Router.post('/signup',async(req,res)=>{
       res.status(200).json({output,token})          
 
    }catch(error){
-      res.status(500).send({msg:'Internal Server Error'},error)
+      res.status(500).json({msg:'Internal Server Error'},error)
    }
 
 })
@@ -64,7 +67,7 @@ Router.post('/signin',async (req,res)=>{
     try{
   
        const userExist =  await userModel.findOne({name:req.body.name})
-  
+       
        // if check user exist 
        if(!userExist){
          return res.status(400).send("User not Found")
@@ -80,15 +83,10 @@ Router.post('/signin',async (req,res)=>{
       res.status(200).json({msg:"Login Successfully ",token}) 
 
     }catch(error){
-      res.status(500).send({msg:'Internal Server Error'},error)
-    }
-     
-  
+      res.status(500).json({msg:'Internal Server Error'},error)
+    }  
 })
-
-
   
-
-
+  
 module.exports = Router
 

@@ -30,6 +30,10 @@ app.use(auth)
 
 
 
+// Products
+const products = require('./ProductsFile/products')
+app.use(products)
+
 
 
 // server started
