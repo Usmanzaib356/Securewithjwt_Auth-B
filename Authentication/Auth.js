@@ -46,7 +46,7 @@ Router.post('/signup',async(req,res)=>{
 
       // token generate 
      const token = await jwt.sign({user},secret_key)
-      res.status(200).json({output,token})          
+      res.status(200).json({msg:"Signup Successfully",token})          
 
    }catch(error){
       res.status(500).json({msg:'Internal Server Error'},error)
